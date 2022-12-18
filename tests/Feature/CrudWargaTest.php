@@ -36,4 +36,22 @@ class CrudWargaTest extends TestCase
         $response->assertStatus(200);
         $response->assertSee($warga->nama);
     }
+
+    public function test_user_can_update_data()
+    {
+        $user = User::factory()->create();
+        $warga = Warga::factory()->create();
+        $this->assertCount(1, Warga::all());
+        $warga = Warga::first();
+        $response = $this->actingAs($user)->put('/warga/update/' . $warga->id, [
+            'nama' => "Dinar-update",
+            'nik' => "6666661",
+            'email' => "dinarupdate@gmail.com",
+            'jenis_kelamin' => "P",
+            'alamat' => "Karanganyar",
+        ]);
+
+        $response->assertSessionHasNoErrors();
+        $response->assertRedirect('/warga');
+    }
 }
