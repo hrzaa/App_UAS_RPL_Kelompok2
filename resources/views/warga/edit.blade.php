@@ -20,7 +20,7 @@
                     </div>
                     <div class="mb-1">
                         <label for="exampleInputEmail1" class="form-label">Email</label>
-                        <input class="form-control"type="text" name="no_kk" value="{{ $warga->email }}"><br>
+                        <input class="form-control"type="text" name="email" value="{{ $warga->email }}"><br>
                     </div>
                     <div class="mb-1">
                         <label for="exampleInputEmail1" class="form-label">Jenis Kelamin</label>
