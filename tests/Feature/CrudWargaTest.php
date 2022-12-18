@@ -54,4 +54,14 @@ class CrudWargaTest extends TestCase
         $response->assertSessionHasNoErrors();
         $response->assertRedirect('/warga');
     }
+
+    public function test_user_can_delete_data()
+    {
+        $user = User::factory()->create();
+        $warga = Warga::factory()->create();
+        $this->assertEquals(1, Warga::count());
+        $response = $this->actingAs($user)->delete('/warga/delete/' . $warga->id);
+        $response->assertStatus(302);
+        $this->assertEquals(0, Warga::count());
+    }
 }
